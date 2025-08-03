@@ -3,66 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>江苏省养老设施数据可视化</title>
-    <!-- 关键：引入 ECharts 官方 CDN -->
-  <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+    <title>江苏省养老设施与老年人口数据</title>
+    <!-- 使用可靠的 ECharts CDN -->
+  <script src="https://cdn.staticfile.org/echarts/5.4.3/echarts.min.js"></script>
     <style>
         body {
-            font-family: 'Microsoft YaHei', sans-serif;
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
             margin: 0;
             padding: 20px;
-            background: #f5f5f5;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
         }
         #chart-container {
             width: 100%;
             height: 600px;
-            margin: 0 auto;
-            background: white;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <div id="chart-container"></div>
+    <div class="container">
+        <h1>江苏省各市养老设施与老年人口对比</h1>
+        <div id="chart-container"></div>
+    </div>
 
     <script>
-        // 等待页面加载完成后执行
+        // 确保 DOM 加载完成后再初始化图表
         document.addEventListener('DOMContentLoaded', function() {
-            // 1. 初始化图表
-            var chart = echarts.init(document.getElementById('chart-container'));
-            
-            // 2. 配置数据
+            // 初始化 ECharts
+            var chartDom = document.getElementById('chart-container');
+            var myChart = echarts.init(chartDom);
+
+            // 图表配置
             var option = {
                 title: {
-                    text: '江苏省各市养老设施数量',
+                    text: '设施数量与老年人口对比',
+                    subtext: '数据来源: 江苏省统计局',
                     left: 'center'
                 },
                 tooltip: {
                     trigger: 'axis',
                     axisPointer: { type: 'shadow' }
                 },
+                legend: {
+                    data: ['养老院', '医院', '公园', '老年人口(万)'],
+                    top: 40
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true,
+                    top: 100
+                },
                 xAxis: {
-                    type: 'category',
-                    data: ['南京', '苏州', '无锡', '常州', '徐州', '南通', '连云港']
+                    type: 'value',
+                    name: '数量'
                 },
                 yAxis: {
-                    type: 'value',
-                    name: '数量（个）'
+                    type: 'category',
+                    data: ['南京', '苏州', '连云港', '徐州', '宿迁', '淮安', '盐城', '泰州', '扬州', '镇江', '南通', '常州', '无锡']
                 },
-                series: [{
-                    name: '养老院',
-                    type: 'bar',
-                    data: [120, 200, 150, 80, 70, 110, 130],
-                    itemStyle: { color: '#5470C6' }
-                }]
+                series: [
+                    {
+                        name: '养老院',
+                        type: 'bar',
+                        stack: 'total',
+                        data: [272, 178, 105, 190, 135, 193, 165, 150, 113, 128, 278, 111, 158],
+                        itemStyle: { color: '#5470C6' },
+                        label: { show: true, position: 'insideRight', formatter: '{c}个' }
+                    },
+                    {
+                        name: '医院',
+                        type: 'bar',
+                        stack: 'total',
+                        data: [269, 949, 80, 157, 131, 377, 156, 115, 76, 61, 108, 103, 526],
+                        itemStyle: { color: '#91CC75' },
+                        label: { show: true, position: 'insideRight', formatter: '{c}个' }
+                    },
+                    {
+                        name: '公园',
+                        type: 'bar',
+                        stack: 'total',
+                        data: [484, 898, 70, 178, 326, 68, 141, 214, 282, 166, 540, 906, 257],
+                        itemStyle: { color: '#FAC858' },
+                        label: { show: true, position: 'insideRight', formatter: '{c}个' }
+                    },
+                    {
+                        name: '老年人口(万)',
+                        type: 'bar',
+                        stack: 'total',
+                        data: [209.72, 251.56, 105.94, 218.2, 57.23, 103.83, 201.5, 127.48, 130.95, 75.84, 231.87, 111.08, 147.38],
+                        itemStyle: { color: '#EE6666' },
+                        label: { show: true, position: 'insideRight', formatter: '{c}万' }
+                    }
+                ]
             };
 
-            // 3. 渲染图表
-            chart.setOption(option);
+            // 应用配置
+            myChart.setOption(option);
 
-            // 4. 响应式调整窗口大小
+            // 响应式调整
             window.addEventListener('resize', function() {
-                chart.resize();
+                myChart.resize();
             });
         });
     </script>
