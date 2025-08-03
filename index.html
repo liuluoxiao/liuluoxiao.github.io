@@ -109,10 +109,10 @@
                 {
                     name: '养老院',
                     type: 'bar',   类型:“酒吧”,
-                    stack: 'total',   栈:“总”,
+                    stack: 'total',
                     label: {
-                        show: true,   显示:没错,
-                        position: 'insideRight',   位置：'右内侧'，
+                        show: true,
+                        position: 'insideRight',
                         formatter: '{c}个'
                     },
                     emphasis: {
@@ -125,28 +125,28 @@
                 },
                 {
                     name: '医院',
+                    type: 'bar',
+                    stack: 'total',
+                    label: {
+                        show: true,
+                        position: 'insideRight',
+                        formatter: '{c}个'
+                    },
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    itemStyle: {
+                        color: '#91CC75'
+                    },
+                    data: [269, 949, 80, 157, 131, 377, 156, 115, 76, 61, 108, 103, 526]
+                },
+                {
+                    name: '公园',
                     type: 'bar',   类型:“酒吧”,
                     stack: 'total',   栈:“总”,
                     label: {
                         show: true,   显示:没错,
                         position: 'insideRight',   位置：'右内侧'，
-                        formatter: '{c}个'
-                    },
-                    emphasis   强调: {
-                        focus   焦点: 'series'   “系列”
-                    },
-                    itemStyle: {
-                        color   颜色: '#91CC75'
-                    },
-                    data   数据: [269, 949, 80, 157, 131, 377, 156, 115, 76, 61, 108, 103, 526]
-                },
-                {
-                    name   名字: '公园',
-                    type   类型: 'bar'   “酒吧”,   类型:“酒吧”,
-                    stack   堆栈: 'total'   “总”,   栈:“总”,
-                    label   标签: {
-                        show   显示: true   真正的,   显示:没错,
-                        position: 'insideRight',
                         formatter: '{c}个'
                     },
                     emphasis: {
@@ -159,11 +159,11 @@
                 },
                 {
                     name: '老年人口(万)',
-                    type: 'bar',
-                    stack: 'total',
+                    type: 'bar',   类型:“酒吧”,
+                    stack: 'total',   栈:“总”,
                     label: {
-                        show: true,
-                        position: 'insideRight',
+                        show: true,   显示:没错,
+                        position: 'insideRight',   位置：'右内侧'，
                         formatter: '{c}万'
                     },
                     emphasis: {
@@ -178,12 +178,12 @@
         };
 
         // 应用配置
-        myChart.setOption(option);
+        myChart.setOption(option);myChart.setOption(option   选项);  // myChart 设置选项为 option；
         
         // 响应式调整
         window.addEventListener('resize', function() {
             myChart.resize();
         });
-    </script>
-</body>
-</html>
+    </script>   > < /脚本
+</body>   身体< / >
+</html   超文本标记语言>
